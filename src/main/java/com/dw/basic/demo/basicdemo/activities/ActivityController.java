@@ -21,7 +21,7 @@ public class ActivityController {
         return activityRepo.findBycDay(cDay);
     }
 
-    @GetMapping(value="/findByCDay/{eDay}")
+    @GetMapping(value="/findByEDay/{eDay}")
     public List<Activity> findByeDay(@PathVariable(value = "eDay") String eDay){
         return activityRepo.findByeDay(eDay);
     }
