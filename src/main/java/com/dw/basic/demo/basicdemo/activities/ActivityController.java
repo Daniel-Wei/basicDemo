@@ -3,6 +3,7 @@ package com.dw.basic.demo.basicdemo.activities;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 @RestController
@@ -16,8 +17,10 @@ public class ActivityController {
         return activityRepo.findAll();
     }
 
-    @GetMapping(value="/findByCDay/{cDay}")
-    public List<Activity> findBycDay(@PathVariable(value = "cDay") String cDay){
+    @GetMapping(value="/findByCDay/{cDay}", produces="application/json;charset=UTF-8")
+    public List<Activity> findBycDay(@PathVariable(value = "cDay") String cDay) throws UnsupportedEncodingException {
+//        String path  = new String(cDay.getBytes("ISO-8859-1"), "utf8");
+//        System.out.println(path);
         return activityRepo.findBycDay(cDay);
     }
 
