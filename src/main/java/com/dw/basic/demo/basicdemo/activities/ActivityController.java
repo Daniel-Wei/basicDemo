@@ -19,14 +19,18 @@ public class ActivityController {
 
     @GetMapping(value="/findByCDay/{cDay}", produces="application/json;charset=UTF-8")
     public List<Activity> findBycDay(@PathVariable(value = "cDay") String cDay) throws UnsupportedEncodingException {
-//        String path  = new String(cDay.getBytes("ISO-8859-1"), "utf8");
-//        System.out.println(path);
         return activityRepo.findBycDay(cDay);
     }
 
     @GetMapping(value="/findByEDay/{eDay}")
     public List<Activity> findByeDay(@PathVariable(value = "eDay") String eDay){
         return activityRepo.findByeDay(eDay);
+    }
+
+    @DeleteMapping (value="/delete/{id}")
+    public String deleteActivityById(@PathVariable(value = "id") Integer id){
+        activityRepo.deleteById(id);
+        return "deleted id " + id.toString() + " activity";
     }
 
     @PostMapping(value="/save")
