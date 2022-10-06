@@ -7,4 +7,6 @@ import java.util.List;
 public interface ActivityRepo extends JpaRepository<Activity, Integer> {
     List<Activity> findBycDay(String cDay);
     List<Activity> findByeDay(String eDay);
-    }
+
+
+}

@@ -1,30 +1,24 @@
 package com.dw.basic.demo.basicdemo.activities;
 
-
-import lombok.Data;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
-
+import com.dw.basic.demo.basicdemo.users.User;
 import javax.persistence.*;
+import java.util.List;
 
-@Data
 @Entity
-@DynamicInsert
-@DynamicUpdate
-@Table(name = "activity")
 public class Activity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     private String name;
 
-    private String  date;
+    private String date;
 
     private String eDay;
 
     private String cDay;
+
 
     public Integer getId() {
         return id;
@@ -36,7 +30,7 @@ public class Activity {
 
     public String getName() {
         return name;
-    }
+}
 
     public void setName(String name) {
         this.name = name;
@@ -71,7 +65,20 @@ public class Activity {
 
     }
 
+    public List<User> getBookings() {
+        return bookings;
+    }
 
 
+    public void addBookings(User booking) {
+        this.bookings.add(booking);
+    }
+
+
+    /*
+    一个activity可能有多个users参加
+     */
+    @ManyToMany
+    private List<User> bookings;
 
 }
