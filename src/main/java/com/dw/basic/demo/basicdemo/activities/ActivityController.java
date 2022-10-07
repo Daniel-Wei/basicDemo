@@ -16,6 +16,8 @@ public class ActivityController {
     @Autowired
     private ActivityRepo activityRepo;
 
+    private ActivityFactory activityFactory = new ActivityFactory();
+
     @Autowired
     private UserRepo userRepo;
 
@@ -64,19 +66,14 @@ public class ActivityController {
     }
 
     @PostMapping(value="/save")
-    public Activity saveOne(@RequestParam("cDay") String cDay, @RequestParam("eDay") String eDay,@RequestParam("date") String date, @RequestParam("name") String name){
-        Activity activity = new Activity();
-        activity.setcDay(cDay);
-        activity.seteDay(eDay);
-        activity.setDate(date);
-        activity.setName(name);
-
+    public Activity saveOne(@RequestParam("type") int type, @RequestParam("date") String date){
+        Activity activity = activityFactory.create(type, date);
         return activityRepo.save(activity);
     }
 
     @Modifying
     @PostMapping(value="/saveBooking/{id}")
-    public String saveBooking(@RequestParam("id") Integer id, @RequestParam("name") String name, @RequestParam("contactNumber") String contactNumber){
+    public String saveBooking(@RequestParam("id") Integer id, @RequestParam("contactNumber") String contactNumber){
         Activity activity = activityRepo.findById(id).orElse(null);
 
         User user = userRepo.findByContactNumber(contactNumber);
@@ -86,7 +83,7 @@ public class ActivityController {
 
 
         return "user: " + user.getId() + " | " + user.getName()  + " | " + user.getContactNumber()
-                +"\n booked activity: " + activity.getDate() + " | " + activity.getName();
+                +"\n booked activity: " + activity.getDate() + " | " + activity.getCategory();
     }
 
 
