@@ -43,5 +43,7 @@ public abstract class Activity {
         this.date = date;
     }
 
+    public Activity(){}
+
 
 }

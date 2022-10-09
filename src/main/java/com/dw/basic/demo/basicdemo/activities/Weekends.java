@@ -14,4 +14,8 @@ public class Weekends extends Activity{
         this.cDay = ActivityConstants.CWeekends;
         this.eDay = ActivityConstants.EWeekends;
     }
+
+    public Weekends(){
+        super();
+    }
 }

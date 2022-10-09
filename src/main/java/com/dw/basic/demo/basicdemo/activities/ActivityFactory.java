@@ -1,8 +1,5 @@
 package com.dw.basic.demo.basicdemo.activities;
-
 import com.dw.basic.demo.basicdemo.constants.ActivityConstants;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 public class ActivityFactory {
 

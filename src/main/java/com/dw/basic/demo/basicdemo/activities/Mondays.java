@@ -13,4 +13,7 @@ public class Mondays extends Activity{
         this.cDay = ActivityConstants.CMonday;
         this.eDay = ActivityConstants.EMonday;
     }
+    public Mondays(){
+        super();
+    }
 }
