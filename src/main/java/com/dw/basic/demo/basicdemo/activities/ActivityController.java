@@ -3,6 +3,9 @@ package com.dw.basic.demo.basicdemo.activities;
 import com.dw.basic.demo.basicdemo.users.User;
 import com.dw.basic.demo.basicdemo.users.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,17 +28,17 @@ public class ActivityController {
     @RequestMapping(value = "/all")
     public String getAllActivitiesInfo(){
         List<Activity> all =  activityRepo.findAll();
-        String res = "";
+        StringBuilder res = new StringBuilder();
         for (Activity activity: all) {
            List<User> users = activity.getBookings();
            for(User user: users)
            {
-               res += user.getName() + user.getContactNumber();
+               res.append(user.getName()).append(user.getContactNumber());
            }
 
         }
 
-        return res;
+        return res.toString();
     }
 
     @GetMapping(value="/findByCDay/{cDay}", produces="application/json;charset=UTF-8")
@@ -84,6 +87,19 @@ public class ActivityController {
 
         return "user: " + user.getId() + " | " + user.getName()  + " | " + user.getContactNumber()
                 +"\n booked activity: " + activity.getDate() + " | " + activity.getCategory();
+    }
+
+    /*
+    分页查询
+     */
+    @GetMapping("/page")
+    public List <Activity> findPage(@RequestParam Integer pageNum,@RequestParam Integer pageSize){
+        pageNum -= 1;
+        Pageable pageable = PageRequest.of(pageNum, pageSize);
+
+        Page<Activity> page = activityRepo.findAll(pageable);
+
+        return page.getContent();
     }
 
 
