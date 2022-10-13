@@ -16,4 +16,11 @@ public class Wednesdays extends Activity{
     public Wednesdays(){
         super();
     }
+
+    @Override
+    public void printInfo() {
+        System.out.println("~ ~ 🏊‍ ~ ~ WEDNESDAY SWIMMING ~ ~ 🏊 ~ ~ ");
+        super.printInfo();
+
+    }
 }

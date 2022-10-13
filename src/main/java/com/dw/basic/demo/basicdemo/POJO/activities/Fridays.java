@@ -19,4 +19,9 @@ public class Fridays extends Activity{
         super();
     }
 
+    @Override
+    public void printInfo() {
+        System.out.println("~ ~ 🏊‍ ~ ~ FRIDAY SWIMMING ~ ~ 🏊‍ ~ ~ ");
+        super.printInfo();
+    }
 }

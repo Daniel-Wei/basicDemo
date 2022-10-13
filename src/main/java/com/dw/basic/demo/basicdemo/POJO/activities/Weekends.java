@@ -17,4 +17,11 @@ public class Weekends extends Activity{
     public Weekends(){
         super();
     }
+
+    @Override
+    public void printInfo() {
+        System.out.println("~ ~ 🪂‍ ~ ~ WEEKENDS SKYDIVING ~ ~ 🪂 ~ ~ ");
+        super.printInfo();
+
+    }
 }

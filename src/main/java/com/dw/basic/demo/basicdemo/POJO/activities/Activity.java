@@ -12,7 +12,7 @@ import java.util.List;
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "dtype")
 
-public abstract class Activity {
+public abstract class Activity implements ActivityInterface{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -42,5 +42,17 @@ public abstract class Activity {
     }
 
     public Activity(){}
+
+    @Override
+    public void printInfo() {
+
+        String info = "Activity ID:" + this.getId() + "\n"
+                + "Activity Category: " + this.category + "\n"
+                + "Activity Date: " + this.date + "\n"
+                + "Activity Day: " + this.eDay + "\n"
+                + "周几: " + this.cDay;
+
+        System.out.println(info);
+    }
 
 }

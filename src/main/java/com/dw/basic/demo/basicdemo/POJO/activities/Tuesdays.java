@@ -16,4 +16,11 @@ public class Tuesdays extends Activity{
     public Tuesdays(){
         super();
     }
+
+    @Override
+    public void printInfo() {
+        System.out.println("~ ~ 🧗‍‍ ~ ~ TUESDAY HIKING ~ ~ 🧗‍ ~ ~ ");
+        super.printInfo();
+
+    }
 }

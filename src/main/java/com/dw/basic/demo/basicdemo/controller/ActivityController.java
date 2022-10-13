@@ -63,7 +63,9 @@ public class ActivityController {
     @PostMapping(value="/save")
     public Activity saveOne(@RequestParam("type") int type, @RequestParam("date") String date){
         Activity activity = activityFactory.create(type, date);
-        return activityRepo.save(activity);
+        activityRepo.save(activity);
+        activity.printInfo();
+        return activity;
     }
 
     /*
