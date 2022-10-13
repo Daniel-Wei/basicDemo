@@ -51,4 +51,9 @@ public class User {
 
     }
 
+    public String userInfo(){
+        return "User Name: " + this.name + "\n"
+                +"User Contact Number: " + this.contactNumber;
+    }
+
 }

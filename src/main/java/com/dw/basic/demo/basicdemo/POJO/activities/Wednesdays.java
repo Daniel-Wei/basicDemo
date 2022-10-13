@@ -5,13 +5,14 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue(ActivityConstants.EWednesday)
+@DiscriminatorValue(ActivityConstants.E_WED)
 public class Wednesdays extends Activity{
     public Wednesdays(String date) {
         super(date);
         this.category = ActivityConstants.SWIMMING;
-        this.cDay = ActivityConstants.CWednesday;
-        this.eDay = ActivityConstants.EWednesday;
+        this.cDay = ActivityConstants.C_WED;
+        this.eDay = ActivityConstants.E_WED;
+        this.capacity = ActivityConstants.WED_BOOKINGS_SIZE;
     }
     public Wednesdays(){
         super();

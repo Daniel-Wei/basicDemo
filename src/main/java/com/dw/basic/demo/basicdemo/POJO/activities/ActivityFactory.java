@@ -12,19 +12,19 @@ public class ActivityFactory {
     public Activity create(int type, String date)
     {
         switch(type){
-            case ActivityConstants.Monday:
+            case ActivityConstants.MON:
                 Mondays Mon = new Mondays(date);
                 return Mon;
-            case ActivityConstants.Tuesday:
+            case ActivityConstants.TUES:
                 Tuesdays Tues = new Tuesdays(date);
                 return Tues;
-            case ActivityConstants.Wednesday:
+            case ActivityConstants.WED:
                 Wednesdays Wed = new Wednesdays(date);
                 return Wed;
-            case ActivityConstants.Weekends:
+            case ActivityConstants.WEEKEND:
                 Weekends Weekend = new Weekends(date);
                 return Weekend;
-            case ActivityConstants.Friday:
+            case ActivityConstants.FRI:
                 Fridays Fri = new Fridays(date);
                 return Fri;
 
