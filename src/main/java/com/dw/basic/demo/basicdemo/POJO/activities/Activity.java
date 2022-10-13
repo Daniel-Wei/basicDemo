@@ -4,7 +4,6 @@ import com.dw.basic.demo.basicdemo.POJO.User;
 import lombok.Getter;
 import lombok.Setter;
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -12,7 +11,6 @@ import java.util.List;
 @Setter
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "dtype")
-
 public abstract class Activity implements ActivityInterface{
 
     @Id
@@ -27,7 +25,10 @@ public abstract class Activity implements ActivityInterface{
 
     protected String cDay;
 
-    protected int capacity;
+    protected Integer capacity;
+
+    protected Integer price;
+
 
     /*
     一个activity可能有多个users参加
@@ -47,53 +48,57 @@ public abstract class Activity implements ActivityInterface{
     public Activity(){}
 
     @Override
-    public void printInfo() {
+    public String info() {
 
-        String info = "Activity ID:" + this.getId() + "\n"
+        return "Activity ID:" + this.getId() + "\n"
                 + "Activity Category: " + this.category + "\n"
                 + "Activity Date: " + this.date + "\n"
                 + "Activity Day: " + this.eDay + "\n"
                 + "周几: " + this.cDay + "\n"
-                + "* * * Current Bookings * * * \n" + getBookingsInfo();
+                + "Activity Capacity: " + this.capacity;
 
-        System.out.println(info);
     }
 
-    protected String getBookingsInfo(){
-        String info = "";
-
-        if (this.getBookings().size() > 0){
-            int count = 1;
-            for(User user : this.getBookings()){
-                info += "Bookings: " + count + "\n"
-                        + user.userInfo();
-                count += 1;
+    protected boolean alrSignedUp(String contactNumber)
+    {
+        for(User user: this.getBookings()){
+            if(user.getContactNumber().equals(contactNumber))
+            {
+                return true;
             }
+        }
+        return false;
+    }
 
-        }else{
-            info = "No Bookings.";
+    public boolean whetherCouldSignUp(String contactNumber)
+    {
+        return (this.getBookings().size() < this.capacity) && !(alrSignedUp(contactNumber));
+    }
+
+
+    abstract String signUp();
+
+    //结算
+    String settle(boolean couldSignUp)
+    {
+        String price = "Price : " + this.price+ "\n";
+        String bookingRes;
+        if(couldSignUp)
+        {
+            bookingRes = "Congratulations! You just booked it! ";
+        }else
+        {
+
+            bookingRes = "Oops! You have already booked it or it is already full.";
         }
 
-        return info;
+
+        return price + bookingRes;
     }
 
-
-
-//    abstract void signUp();
-//    abstract void during();
-//    abstract void settle();
-//
-//    //模板
-//    protected final void doActivity(){
-//
-//        //报名
-//        signUp();
-//
-//        //出去玩
-//        during();
-//
-//        //结算
-//        settle();
-//    }
+    //模板
+    public final String doActivity(boolean couldSignUp){
+        return signUp() + info() + settle(couldSignUp);
+    }
 
 }

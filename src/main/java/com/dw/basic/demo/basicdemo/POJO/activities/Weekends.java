@@ -13,6 +13,7 @@ public class Weekends extends Activity{
         this.cDay = ActivityConstants.C_WEEKEND;
         this.eDay = ActivityConstants.E_WEEKEND;
         this.capacity = ActivityConstants.WEEKENDS_BOOKINGS_SIZE;
+        this.price = ActivityConstants.WEEKENDS_BOOKINGS_PRICE;
     }
 
     public Weekends(){
@@ -20,9 +21,20 @@ public class Weekends extends Activity{
     }
 
     @Override
-    public void printInfo() {
-        System.out.println("~ ~ 🪂‍ ~ ~ WEEKENDS SKYDIVING ~ ~ 🪂 ~ ~ ");
-        super.printInfo();
+    public String info() {
+        return ActivityConstants.WEEKEND_DISPLAY + super.info();
+    }
+
+    @Override
+    String signUp() {
+        return ActivityConstants.WEEKEND_DISPLAY + ActivityConstants.SKYDIVING_INFO;
+    }
+
+
+    @Override
+    String settle(boolean couldSignUp)
+    {
+        return ActivityConstants.WEEKEND_DISPLAY + super.settle(couldSignUp);
 
     }
 }

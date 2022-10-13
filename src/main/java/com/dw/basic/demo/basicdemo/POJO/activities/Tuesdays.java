@@ -13,15 +13,28 @@ public class Tuesdays extends Activity{
         this.cDay = ActivityConstants.C_TUES;
         this.eDay = ActivityConstants.E_TUES;
         this.capacity = ActivityConstants.TUES_BOOKINGS_SIZE;
+        this.price = ActivityConstants.TUES_BOOKINGS_PRICE;
     }
     public Tuesdays(){
         super();
     }
 
     @Override
-    public void printInfo() {
-        System.out.println("~ ~ 🧗‍‍ ~ ~ TUESDAY HIKING ~ ~ 🧗‍ ~ ~ ");
-        super.printInfo();
+    public String info() {
+        return ActivityConstants.TUES_DISPLAY + super.info();
+
+    }
+
+    @Override
+    String signUp() {
+        return ActivityConstants.TUES_DISPLAY + ActivityConstants.HIKING_INFO;
+    }
+
+
+    @Override
+    String settle(boolean couldSignUp)
+    {
+        return ActivityConstants.TUES_DISPLAY + super.settle(couldSignUp);
 
     }
 }

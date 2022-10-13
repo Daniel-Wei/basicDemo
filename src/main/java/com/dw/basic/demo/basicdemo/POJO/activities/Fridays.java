@@ -14,6 +14,7 @@ public class Fridays extends Activity{
         this.cDay = ActivityConstants.C_FRI;
         this.eDay = ActivityConstants.E_FRI;
         this.capacity = ActivityConstants.FRI_BOOKINGS_SIZE;
+        this.price = ActivityConstants.FRI_BOOKINGS_PRICE;
     }
 
     public Fridays(){
@@ -21,8 +22,21 @@ public class Fridays extends Activity{
     }
 
     @Override
-    public void printInfo() {
-        System.out.println("~ ~ 🏊‍ ~ ~ FRIDAY SWIMMING ~ ~ 🏊‍ ~ ~ ");
-        super.printInfo();
+    public String info() {
+        return ActivityConstants.FRI_DISPLAY + super.info();
     }
+
+    @Override
+    String signUp() {
+        return ActivityConstants.FRI_DISPLAY + ActivityConstants.SWIMMING_INFO;
+    }
+
+
+    @Override
+    String settle(boolean couldSignUp)
+    {
+        return ActivityConstants.FRI_DISPLAY + super.settle(couldSignUp);
+
+    }
+
 }

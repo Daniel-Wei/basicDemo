@@ -13,15 +13,27 @@ public class Wednesdays extends Activity{
         this.cDay = ActivityConstants.C_WED;
         this.eDay = ActivityConstants.E_WED;
         this.capacity = ActivityConstants.WED_BOOKINGS_SIZE;
+        this.price = ActivityConstants.WED_BOOKINGS_PRICE;
     }
     public Wednesdays(){
         super();
     }
 
     @Override
-    public void printInfo() {
-        System.out.println("~ ~ 🏊‍ ~ ~ WEDNESDAY SWIMMING ~ ~ 🏊 ~ ~ ");
-        super.printInfo();
+    public String info() {
+        return ActivityConstants.WED_DISPLAY + super.info();
+    }
+
+    @Override
+    String signUp() {
+        return ActivityConstants.WED_DISPLAY + ActivityConstants.SWIMMING_INFO;
+    }
+
+
+    @Override
+    String settle(boolean couldSignUp)
+    {
+        return ActivityConstants.WEEKEND_DISPLAY + super.settle(couldSignUp);
 
     }
 }

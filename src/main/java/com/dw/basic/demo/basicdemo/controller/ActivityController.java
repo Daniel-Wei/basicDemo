@@ -36,8 +36,7 @@ public class ActivityController {
      */
     @GetMapping(value="/findByEDay/{eDay}")
     public List<Activity> findByeDay(@PathVariable(value = "eDay") String eDay){
-        List<Activity> all =  activityRepo.findByeDay(eDay);
-        return all;
+        return activityRepo.findByeDay(eDay);
     }
 
     /*
@@ -61,11 +60,11 @@ public class ActivityController {
     存储一个新的activity
      */
     @PostMapping(value="/save")
-    public Activity saveOne(@RequestParam("type") int type, @RequestParam("date") String date){
+    public String saveOne(@RequestParam("type") int type, @RequestParam("date") String date){
         Activity activity = activityFactory.create(type, date);
         activityRepo.save(activity);
-        activity.printInfo();
-        return activity;
+        return activity.info();
+
     }
 
     /*
@@ -77,11 +76,17 @@ public class ActivityController {
         Activity activity = activityRepo.findById(activityId).orElse(null);
         User user = userRepo.findByContactNumber(contactNumber);
 
-        activity.addBookings(user);
-        activityRepo.save(activity);
+        boolean couldSignUp = activity.whetherCouldSignUp(contactNumber);
 
-        return "user: " + user.getId() + " | " + user.getName()  + " | " + user.getContactNumber()
-                +"\n booked activity: " + activity.getDate() + " | " + activity.getCategory();
+        if(couldSignUp)
+        {
+            activity.addBookings(user);
+            activityRepo.save(activity);
+        }
+
+
+        return activity.doActivity(couldSignUp);
+
     }
 
     /*
