@@ -24,7 +24,7 @@ public class ActivityController {
     private UserRepo userRepo;
 
     /*
-    根据用户输入的Chinese Day Name返回所有搜索结果
+    Based on Chinese Day return search results
      */
     @GetMapping(value="/findByCDay/{cDay}", produces="application/json;charset=UTF-8")
     public List<Activity> findBycDay(@PathVariable(value = "cDay") String cDay) throws UnsupportedEncodingException {
@@ -32,7 +32,7 @@ public class ActivityController {
     }
 
     /*
-    根据用户输入的English Day Name返回所有搜索结果
+    Based on English Day return search results
      */
     @GetMapping(value="/findByEDay/{eDay}")
     public List<Activity> findByeDay(@PathVariable(value = "eDay") String eDay){
@@ -40,7 +40,7 @@ public class ActivityController {
     }
 
     /*
-    删除所有activities
+    Delete all activities
      */
     @DeleteMapping (value="/deleteAll")
     public void deleteAllActivities(){
@@ -48,7 +48,7 @@ public class ActivityController {
     }
 
     /*
-    删除指定的activity
+    Delete an specific activity
      */
     @DeleteMapping (value="/delete/{id}")
     public void deleteActivityById(@PathVariable(value = "id") Integer id){
@@ -57,7 +57,7 @@ public class ActivityController {
 
 
     /*
-    存储一个新的activity
+    save a new activity
      */
     @PostMapping(value="/save")
     public String saveOne(@RequestParam("type") int type, @RequestParam("date") String date){
@@ -68,7 +68,7 @@ public class ActivityController {
     }
 
     /*
-    根据activity id + user contactNumber 把用户的信息存储到对应的activity中进行booking记录
+    Based on activity id + user contactNumber, book activity
      */
     @Modifying
     @PostMapping(value="/saveBooking")
@@ -90,7 +90,7 @@ public class ActivityController {
     }
 
     /*
-    分页查询
+    search by pages
      */
     @GetMapping("/page")
     public List <Activity> findPage(@RequestParam Integer pageNum,@RequestParam Integer pageSize){

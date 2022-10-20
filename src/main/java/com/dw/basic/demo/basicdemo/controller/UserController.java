@@ -13,13 +13,13 @@ public class UserController {
     private UserRepo userRepo;
 
     /*
-    新存储一个user
+    save a new user
      */
     @PostMapping(value="/save")
     public User saveOne(@RequestParam("name") String name, @RequestParam("contactNumber") String contactNumber){
         User user = new User();
 
-        // 电话号码具有唯一性 所以设置成user的id
+        // contact number supposed to be unique, so set it as id
         user.setId(contactNumber);
         user.setName(name);
         user.setContactNumber(contactNumber);
@@ -28,7 +28,7 @@ public class UserController {
     }
 
     /*
-    删除所有user
+    delete all users
      */
     @DeleteMapping(value="/deleteAll")
     public void deleteAllActivities(){

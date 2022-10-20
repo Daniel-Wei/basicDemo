@@ -31,7 +31,7 @@ public abstract class Activity implements ActivityInterface{
 
 
     /*
-    一个activity可能有多个users参加
+    one activity could be booked with multiple users
      */
     @ManyToMany
     protected List<User> bookings;
@@ -78,7 +78,6 @@ public abstract class Activity implements ActivityInterface{
 
     abstract String signUp();
 
-    //结算
     String settle(boolean couldSignUp)
     {
         String price = "Price : " + this.price+ "\n";
@@ -96,7 +95,7 @@ public abstract class Activity implements ActivityInterface{
         return price + bookingRes;
     }
 
-    //模板
+    //template
     public final String doActivity(boolean couldSignUp){
         return signUp() + info() + settle(couldSignUp);
     }
